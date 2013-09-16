@@ -4,9 +4,11 @@ import (
 	"html/template"
 	"net/http"
 	"log"
+	"code.google.com/p/goconf/conf"
 )
 
-var templ = template.Must(template.New("mainPage").Parse(mainPage));
+var templ = template.Must(template.New("mainPage").Parse(mainPage))
+var _, _ = templ.Parse(innerDiv)
 
 func main() {
 	http.Handle("/", http.HandlerFunc(rootHandler))
@@ -28,6 +30,15 @@ const mainPage = `
 </head>
 <body>
 HI, HERE WILL BE SOMETHING =)!
+{{template "innerDiv"}}
 </body>
 </html>
+`
+
+const innerDiv = `
+{{define "innerDiv"}}
+<div>
+HIIIII!!!
+</div>
+{{end}}
 `
