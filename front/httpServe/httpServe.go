@@ -6,11 +6,11 @@ import (
 	"log"
 	"code.google.com/p/goconf/conf"
 	"path/filepath"
+	"github.com/v-sh/gotwit/front/httpServe/common"
 )
 
 var allTmpl template.Template
 var mainTmpl *template.Template
-
 
 func Run(conf *conf.ConfigFile) {
 	initTemplates(conf)
@@ -61,6 +61,14 @@ func startServer(conf *conf.ConfigFile){
 	
 }
 
+
+
 func rootHandler(w http.ResponseWriter, req *http.Request) {
-	mainTmpl.Execute(w, req.FormValue("s"));
+	//collect data
+
+	//output data
+	var outdata commonTmpl.PageContainer
+
+	
+	mainTmpl.Execute(w, pageContainer);
 }
