@@ -1,0 +1,16 @@
+*.pdf
+*.*~
+*.log
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.dvi
+*.mk
+front
+perf_tests/perf_tests
+docs/rpz/tex/inc/*
+*.6
