@@ -1,5 +1,4 @@
 *.pdf
-*.*~
 *.log
 *.aux
 *.bbl
@@ -10,7 +9,9 @@
 *.fls
 *.dvi
 *.mk
-front
+front/front
 perf_tests/perf_tests
 docs/rpz/tex/inc/*
 *.6
+*.*~
+*.*#
