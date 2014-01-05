@@ -9,6 +9,7 @@
 *.fls
 *.dvi
 *.mk
+*.deb
 front/front
 perf_tests/perf_tests
 docs/rpz/tex/inc/*
