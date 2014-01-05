@@ -67,7 +67,7 @@ func rootHandler(w http.ResponseWriter, req *http.Request) {
 	//collect data
 
 	//output data
-	var outdata commonTmpl.PageContainer
+	pageContainer := commonTmpl.GetPageContainer()
 
 	
 	mainTmpl.Execute(w, pageContainer);

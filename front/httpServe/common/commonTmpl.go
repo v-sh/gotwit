@@ -21,7 +21,7 @@ func GetPageContainer() (res PageContainer) {
 		{Href: "feed"},
 		{Href: "mypage"},
 		{Href: "search"},
-		{Href: ""}
+		{Href: ""},
 	}
 	return res
 }
