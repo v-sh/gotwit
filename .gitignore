@@ -17,5 +17,5 @@ docs/rpz/tex/inc/*
 *~
 *#
 *.swp
-*md5sums
 packages/gotwit-front/usr
+packages/*/DEBIAN/*

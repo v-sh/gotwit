@@ -1,6 +1,7 @@
 Package: gotwit-front
-Version: 2014.01.05.17.47.13
+Version: 2014.01.06.10.34.55
 Section: misc
 Architecture: amd64
 Maintainer: Vladimir Shushlin <VladimirShushlin@mail.ru>
 Description: frontend package for gotwit
+Priority: optional
