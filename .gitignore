@@ -17,5 +17,4 @@ docs/rpz/tex/inc/*
 *~
 *#
 *.swp
-packages/gotwit-front/usr
-packages/*/DEBIAN/*
+packages/gotwit-front/
