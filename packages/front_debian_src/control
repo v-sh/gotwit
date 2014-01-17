@@ -5,3 +5,4 @@ Architecture: amd64
 Maintainer: Vladimir Shushlin <VladimirShushlin@mail.ru>
 Description: frontend package for gotwit
 Priority: optional
+Depends: nginx

@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+update-rc.d -f front_d remove

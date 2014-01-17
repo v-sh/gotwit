@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+/etc/init.d/front_d stop
+
+PKG=company-service-config
+if [ "$1" = remove ] ; then
+        for f in nginx.conf
+        do
+                [ -L /etc/$f ] && rm /etc/$f
+                dpkg-divert --remove --package ${PKG} --rename \
+                        --divert /etc/$f.distrib /etc/$f
+        done
+fi
+
+exit 0

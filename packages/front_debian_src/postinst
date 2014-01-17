@@ -14,6 +14,20 @@ logger -s -p "syslog.err" -t "ootync.deb" "supersh.deb script '$0' error code $e
 exit $exit_status
 }
 
-insserv front_d
+echo "my word"
+update-rc.d front_d defaults 19
+
+PKG=gotwit-front
+if [ "$1" = configure ] ; then
+        for f in nginx.conf
+        do
+                dpkg-divert --add --package ${PKG} --rename \
+                        --divert /etc/$f.distrib /etc/$f
+                [ \! -e /etc/$f -o -L /etc/$f ] && ln -sf /etc/site/$f /etc/$f
+        done
+fi
+
+/etc/init.d/nginx start
+/etc/init.d/front_d start
 
 exit 0
