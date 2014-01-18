@@ -1,0 +1,8 @@
+Package: gotwit-repo
+Version: 2014.01.06.10.34.55
+Section: misc
+Architecture: amd64
+Maintainer: Vladimir Shushlin <VladimirShushlin@mail.ru>
+Description: configuration package for gotwit package repo
+Priority: optional
+Depends: nginx

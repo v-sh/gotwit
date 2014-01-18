@@ -3,7 +3,7 @@ set -e
 
 /etc/init.d/front_d stop
 
-PKG=company-service-config
+PKG=gotwit-front
 if [ "$1" = remove ] ; then
         for f in nginx/nginx.conf
         do
