@@ -5,7 +5,7 @@ set -e
 
 PKG=company-service-config
 if [ "$1" = remove ] ; then
-        for f in nginx.conf
+        for f in nginx/nginx.conf
         do
                 [ -L /etc/$f ] && rm /etc/$f
                 dpkg-divert --remove --package ${PKG} --rename \

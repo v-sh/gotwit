@@ -19,7 +19,7 @@ update-rc.d front_d defaults 19
 
 PKG=gotwit-front
 if [ "$1" = configure ] ; then
-        for f in nginx.conf
+        for f in nginx/nginx.conf
         do
                 dpkg-divert --add --package ${PKG} --rename \
                         --divert /etc/$f.distrib /etc/$f

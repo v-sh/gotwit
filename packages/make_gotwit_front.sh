@@ -51,7 +51,7 @@ mv $PACKAGE_DIR.deb $PACKAGE_FULL_NAME &&
 lintian $PACKAGE_FULL_NAME
 
 #update apt-server
-(cd $REPO_DIR; rm $PACKAGE_DIR*.deb) &&
+(cd $REPO_DIR; rm -f $PACKAGE_DIR*.deb) &&
 
 cp *.deb $REPO_DIR &&
 (cd $REPO_DIR; reprepro -C gotwit-soft includedeb gotwit *.deb)
