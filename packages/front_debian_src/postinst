@@ -27,7 +27,7 @@ if [ "$1" = configure ] ; then
         done
 fi
 
-/etc/init.d/nginx start
-/etc/init.d/front_d start
+/etc/init.d/nginx restart
+/etc/init.d/front_d restart
 
 exit 0
