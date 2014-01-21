@@ -31,8 +31,7 @@ echo "Version="$VERSION
 cp $FRONT_SRC_DIR/front $BIN_DIR/front_d &&
 cp -R $CONFS_DIR/* $CONF_DIR &&
 cp $INITS_DIR/front_d $PACKAGE_DIR/etc/init.d/ &&
-cp -R ../tmpl $PACKAGE_DIR/usr/share/gotwit/ &&
-
+cp -R ../tmpl ../third_party/static ../static $PACKAGE_DIR/usr/share/gotwit/ &&
 
 #make meta-info
 cp $DEBIAN_SRC_DIR/* $DEBIAN_DIR &&

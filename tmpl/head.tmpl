@@ -1,8 +1,9 @@
-{{define "head_nav"}}
-<table id="head_nav">
-  {{range .Buttons}}
-    {{template "head_btn" .}}
-  {{end}}
-</table>
-{{end}}
+{{define "head"}}
+<head>
+  <title>GoTwit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/starter-template.css">
+</head>
+{{end}}

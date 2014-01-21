@@ -15,10 +15,10 @@ func main() {
 	var err error
 	mainConf, err = conf.ReadConfigFile(confFileName)
 	
-	httpServe.Run(mainConf)
 	if err != nil {
 		log.Panicf("Error reading config file: err %s", err);
 	}
+	httpServe.Run(mainConf)
 }
 
 func init() {

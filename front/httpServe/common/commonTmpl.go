@@ -14,6 +14,7 @@ type HeadNav struct {
 
 type PageContainer struct{
 	Head HeadNav
+	SubName string
 }
 
 func GetPageContainer() (res PageContainer) {
@@ -23,5 +24,6 @@ func GetPageContainer() (res PageContainer) {
 		{Href: "search"},
 		{Href: ""},
 	}
+	res.SubName = "sub1"
 	return res
 }

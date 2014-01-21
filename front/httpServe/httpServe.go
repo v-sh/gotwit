@@ -6,15 +6,36 @@ import (
 	"log"
 	"code.google.com/p/goconf/conf"
 	"path/filepath"
-	"github.com/v-sh/gotwit/front/httpServe/common"
+	//"github.com/v-sh/gotwit/front/httpServe/common"
+	//"github.com/v-sh/gotwit/front/rsessions"
 )
 
-var allTmpl template.Template
-var mainTmpl *template.Template
+var registerTmpl *template.Template
+var loginTmpl *template.Template
+var myInfoTmpl *template.Template
+var feedTmpl *template.Template
+var userSearchTmpl *template.Template
 
 func Run(conf *conf.ConfigFile) {
 	initTemplates(conf)
 	startServer(conf)
+}
+
+func getTemplate(tmplDir string, contentTmplName string) (resTmpl *template.Template) {
+	tmplFiles := filepath.Join(tmplDir, "*.tmpl")
+	allTmpl, err := template.ParseGlob(tmplFiles)
+	if err != nil {
+		log.Panicf("err parse template:'%s'", err)
+	}
+	contentTmpl, err := allTmpl.ParseFiles(filepath.Join(tmplDir, "content", contentTmplName + ".tmpl"))
+	if contentTmpl == nil {
+		log.Panicf("err parse content template:'%s', err = '%s'",contentTmplName, err)
+	}
+	resTmpl = allTmpl.Lookup("main_page")
+	if resTmpl == nil {
+		log.Panicf("error in lookup mainpage in '%s' template", contentTmplName)
+	}
+	return
 }
 
 func initTemplates(conf *conf.ConfigFile) {
@@ -22,30 +43,16 @@ func initTemplates(conf *conf.ConfigFile) {
 	if err != nil {
 		log.Panicf("not specified tmpl_dir: %s", err)
 	}
-	tmplPattern, err := conf.GetString("default", "tmpl_pattern")
-	if err != nil {
-		tmplPattern = "*.tmpl"
-	}
 
-	tmplFiles := filepath.Join(tmplDir, tmplPattern)
-	allTmpl, err := template.ParseGlob(tmplFiles)
-	if err != nil {
-		log.Panicf("err parse template:%s", err)
-	}
-	mainPageTmplName, err := conf.GetString("default", "tmpl_mainpage")
-	if err != nil {
-		log.Panicf("not specified tmpl_mainpage: %s",err)
-	}
-
-	mainTmpl = allTmpl.Lookup(mainPageTmplName)
-	if mainTmpl == nil {
-		log.Panicf("there is no template '%s' in parsed templates", mainPageTmplName)
-	}
+	registerTmpl = getTemplate(tmplDir, "register")
+	loginTmpl = getTemplate(tmplDir, "login")
 }
 
 
 func startServer(conf *conf.ConfigFile){
 	http.Handle("/", http.HandlerFunc(rootHandler))
+	http.Handle("/login/", http.HandlerFunc(loginHandler))
+	http.Handle("/register/", http.HandlerFunc(registerHandler))
 	host, err := conf.GetString("default", "host")
 	if err != nil {
 		log.Panic("not specified host");
@@ -67,8 +74,17 @@ func rootHandler(w http.ResponseWriter, req *http.Request) {
 	//collect data
 
 	//output data
-	pageContainer := commonTmpl.GetPageContainer()
 
-	
-	mainTmpl.Execute(w, pageContainer);
+
+	http.Redirect(w, req, "/login", http.StatusTemporaryRedirect)
+	//mainTmpl.Execute(w, pageContainer);
+}
+
+func loginHandler(w http.ResponseWriter, req *http.Request) {
+	log.Printf("login request: %s", req)
+	loginTmpl.Execute(w, "")
+}
+
+func registerHandler(w http.ResponseWriter, req *http.Request) {
+	registerTmpl.Execute(w, "")
 }
